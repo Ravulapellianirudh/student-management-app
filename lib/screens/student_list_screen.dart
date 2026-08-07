@@ -34,7 +34,19 @@ class StudentListScreen extends StatelessWidget {
                 child: Text(student.id.toString()),
               ),
               title: Text(student.name),
-              subtitle: Text(student.email),
+              subtitle: Text(
+                "${student.email}\n${student.phone}\n${student.course}",
+              ),
+              isThreeLine: true,
+              trailing: IconButton(
+                icon: const Icon(
+                  Icons.edit,
+                  color: Colors.blue,
+                ),
+                onPressed: () {
+                  // We will implement this in the next lesson
+                },
+              ),
             ),
           );
         },
