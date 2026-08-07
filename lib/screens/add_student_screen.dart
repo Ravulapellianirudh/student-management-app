@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import '../models/student.dart';
+import '../data/student_data.dart';
+import 'student_list_screen.dart';
 
 class AddStudentScreen extends StatefulWidget {
   const AddStudentScreen({super.key});
@@ -79,14 +82,23 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
               height: 50,
               child: ElevatedButton(
                 onPressed: () {
-                  print("Student Name : ${nameController.text}");
-                  print("Email        : ${emailController.text}");
-                  print("Phone        : ${phoneController.text}");
-                  print("Course       : ${courseController.text}");
 
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text("Student details captured successfully!"),
+                  Student student = Student(
+                    id: studentList.length + 1,
+                    name: nameController.text,
+                    email: emailController.text,
+                    phone: phoneController.text,
+                    course: courseController.text,
+                  );
+
+                  studentList.add(student);
+
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => StudentListScreen(
+                        students: studentList,
+                      ),
                     ),
                   );
                 },
