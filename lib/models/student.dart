@@ -1,9 +1,9 @@
 class Student {
-  final int id;
-  final String name;
-  final String email;
-  final String phone;
-  final String course;
+  int id;
+  String name;
+  String email;
+  String phone;
+  String course;
 
   Student({
     required this.id,
