@@ -1,3 +1,4 @@
+import 'add_student_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -9,10 +10,17 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Student Management"),
       ),
-      body: const Center(
-        child: Text(
-          "Welcome to Student Management App",
-          style: TextStyle(fontSize: 22),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const AddStudentScreen(),
+              ),
+            );
+          },
+          child: const Text("Add Student"),
         ),
       ),
     );
