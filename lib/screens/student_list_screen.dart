@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/student.dart';
+import 'edit_student_screen.dart';
 
 class StudentListScreen extends StatelessWidget {
   final List<Student> students;
@@ -43,8 +44,17 @@ class StudentListScreen extends StatelessWidget {
                   Icons.edit,
                   color: Colors.blue,
                 ),
-                onPressed: () {
-                  // We will implement this in the next lesson
+                onPressed: () async {
+                  await Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => EditStudentScreen(
+                        student: student,
+                      ),
+                    ),
+                  );
+
+                  (context as Element).markNeedsBuild();
                 },
               ),
             ),
