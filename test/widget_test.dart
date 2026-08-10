@@ -1,30 +1,44 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:student_management_app/main.dart';
+import 'package:student_management_app/models/student.dart';
+import 'package:student_management_app/screens/student_list_screen.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('Student list displays students', (WidgetTester tester) async {
+    final students = [
+      Student(
+        id: 1,
+        name: 'Anirudh',
+        email: 'anirudh@gmail.com',
+        phone: '9876543210',
+        course: 'B.Tech',
+      ),
+      Student(
+        id: 2,
+        name: 'Rahul',
+        email: 'rahul@gmail.com',
+        phone: '9876543211',
+        course: 'BCA',
+      ),
+    ];
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    await tester.pumpWidget(
+      MaterialApp(
+        home: StudentListScreen(
+          students: students,
+        ),
+      ),
+    );
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    expect(find.text('Student List'), findsOneWidget);
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    expect(find.text('Total Students : 2'), findsOneWidget);
+
+    expect(find.text('Anirudh'), findsOneWidget);
+    expect(find.text('📧 anirudh@gmail.com'), findsOneWidget);
+
+    expect(find.text('Rahul'), findsOneWidget);
+    expect(find.text('📧 rahul@gmail.com'), findsOneWidget);
   });
 }
